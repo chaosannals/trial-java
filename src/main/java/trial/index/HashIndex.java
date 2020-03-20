@@ -8,13 +8,16 @@ class HashIndex {
         HashSet<Integer> one = makeSet(1000000);
         HashSet<Integer> two = makeSet(1000000);
         Timing.timing(() -> {
-            ArrayList<Integer> result = new ArrayList<>();
+            HashSet<Integer> result = new HashSet<>();
             for (Integer i : one) {
                 if (two.contains(i)) {
                     result.add(i);
                 }
             }
             return result;
+        });
+        Timing.timing(() -> {
+            one.retainAll(two);
         });
     }
 

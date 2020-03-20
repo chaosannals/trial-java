@@ -14,4 +14,12 @@ public abstract class Timing {
         System.out.println(df.format(interval));
         return result;
     }
+
+    public static void timing(Runnable action) {
+        long start = System.nanoTime();
+        action.run();
+        long end = System.nanoTime();
+        double interval = (end - start) * 0.000000001;
+        System.out.println(df.format(interval));
+    }
 }
