@@ -7,6 +7,11 @@ class HashIndex {
     public static void main(String[] arguments) {
         HashSet<Integer> one = makeSet(1000000);
         HashSet<Integer> two = makeSet(1000000);
+        int[] aa = toPrimitive(one.toArray());
+        int[] ab = toPrimitive(two.toArray());
+        Arrays.sort(aa);
+        Arrays.sort(ab);
+
         Timing.timing(() -> {
             HashSet<Integer> result = new HashSet<>();
             for (Integer i : one) {
@@ -18,6 +23,27 @@ class HashIndex {
         });
         Timing.timing(() -> {
             one.retainAll(two);
+        });
+        Timing.timing(() -> {
+            int[] result = new int[aa.length];
+            int i = 0;
+            int j = 0;
+            int k = 0;
+            int ae = aa.length;
+            int be = ab.length;
+            while (i < ae && j < be) {
+                if (aa[i] < ab[j]) {
+                    ++i;
+                } else if (aa[i] > ab[j]) {
+                    ++j;
+                } else {
+                    result[k] = aa[i];
+                    ++i;
+                    ++j;
+                    ++k;
+                }
+            }
+            return result;
         });
     }
 
@@ -31,6 +57,14 @@ class HashIndex {
                 v = random.nextInt(max);
             }
             result.add(v);
+        }
+        return result;
+    }
+
+    public static int[] toPrimitive(Object[] data) {
+        int[] result = new int[data.length];
+        for (int i = 0; i < result.length; ++i) {
+            result[i] = (int)data[i];
         }
         return result;
     }
