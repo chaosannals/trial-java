@@ -17,8 +17,14 @@ repositories {
 }
 
 dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
     implementation 'com.google.guava:guava:28.1-jre'
-    implementation 'jestx:jestx:1.0.4'
+    implementation 'mysql:mysql-connector-java:8.0.17'
+    implementation 'org.mybatis:mybatis:3.5.3'
+    implementation 'org.apache.lucene:lucene-core:8.5.0'
+    implementation 'org.apache.lucene:lucene-queryparser:8.5.0'
+    implementation 'org.apache.lucene:lucene-analyzers-smartcn:8.5.0'
     testImplementation 'junit:junit:4.12'
 }
 
