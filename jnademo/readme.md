@@ -7,3 +7,9 @@
 而且也和 DllImport 一样，只能处理 C 风格 ABI 的导出函数，无法处理 C++ 风格的 ABI 导出函数。
 
 底层是动态类生成。
+
+```bash
+# 生成
+gradle build
+# 在 build/distributions 下可找到发布文件。
+```
