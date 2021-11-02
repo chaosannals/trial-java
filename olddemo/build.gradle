@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(Javadoc) {
+    options.addStringOption('Xdoclint:none', '-quiet')
+    options.addStringOption('encoding', 'UTF-8')
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+    implementation 'com.google.guava:guava:28.1-jre'
+    implementation 'mysql:mysql-connector-java:8.0.17'
+    implementation 'org.mybatis:mybatis:3.5.3'
+    implementation 'org.apache.lucene:lucene-core:8.5.0'
+    implementation 'org.apache.lucene:lucene-queryparser:8.5.0'
+    implementation 'org.apache.lucene:lucene-analyzers-smartcn:8.5.0'
+    testImplementation 'junit:junit:4.12'
+}
+
+application {
+    mainClassName = 'trial.App'
+}

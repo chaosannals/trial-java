@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>trial-java</name>
-	<comment>Project java created by Buildship.</comment>
+	<name>jnidemo</name>
+	<comment>Project jnidemo created by Buildship.</comment>
 	<projects>
 	</projects>
 	<buildSpec>
@@ -16,7 +16,7 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>0</id>
+			<id>1635749936535</id>
 			<name></name>
 			<type>30</type>
 			<matcher>
