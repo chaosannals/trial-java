@@ -1,5 +1,6 @@
 rootProject.name = 'trial-java'
 include('libdemo', 'jnidemo')
 include('jnademo')
+include('jnrdemo')
 include('jrpdemo')
 include('olddemo')

@@ -1,0 +1,21 @@
+plugins {
+    id 'application'
+}
+
+application {
+    mainClass = 'trial.java.jnademo.App'
+}
+
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    implementation group: 'com.github.jnr', name: 'jnr-ffi', version: '2.2.8'
+}
+
+application {
+    // Define the main class for the application.
+    mainClass = 'trial.java.jnrdemo.App'
+}
