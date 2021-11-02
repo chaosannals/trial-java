@@ -1,0 +1,21 @@
+plugins {
+    id 'application'
+}
+
+application {
+    mainClass = 'trial.java.jnademo.App'
+}
+
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    implementation group: 'net.java.dev.jna', name: 'jna', version: '5.9.0'
+}
+
+application {
+    // Define the main class for the application.
+    mainClass = 'trial.java.jnademo.App'
+}

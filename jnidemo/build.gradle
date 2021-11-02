@@ -12,6 +12,5 @@ dependencies {
 }
 
 application {
-    // Define the main class for the application.
     mainClass = 'trial.java.jnidemo.App'
 }
