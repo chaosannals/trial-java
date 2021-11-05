@@ -1,0 +1,27 @@
+plugins {
+    id 'application'
+}
+
+application {
+    mainClass = 'trial.java.hotload.App'
+}
+
+
+repositories {
+    jcenter()
+}
+
+application {
+    mainClass = 'trial.java.hotload.App'
+}
+
+dependencies {
+    // implementation 'org.apache.commons:commons-text'
+    implementation project(':hotlib')
+}
+
+// 复制用于测试的库 jar
+task copyDemoJar(type: Copy) {
+    from '../hotdemo/build/libs/hotdemo.jar'
+    into 'build/distributions/hotload/bin'
+}

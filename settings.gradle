@@ -1,4 +1,5 @@
 rootProject.name = 'trial-java'
+include('hotlib', 'hotdemo', 'hotload')
 include('libdemo', 'jnidemo')
 include('jnademo')
 include('jnrdemo')
