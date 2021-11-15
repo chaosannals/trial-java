@@ -26,3 +26,10 @@ tasks.withType(JavaCompile) {
     sourceCompatibility = '16'
     targetCompatibility = '16'
 }
+
+task copyJars(type:Copy) {
+    // 版本 7 开始
+    from configurations.runtimeClasspath
+    // 版本 6 用： from configurations.runtime
+    into "${buildDir}/dist"
+}
