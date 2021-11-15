@@ -1,0 +1,30 @@
+plugins {
+    id 'cpp-library'
+    id 'cpp-unit-test'
+}
+
+library {
+    targetMachines.add(machines.windows.x86_64)
+}
+
+tasks.withType(CppCompile).configureEach {
+    // 宏定义
+    // macros.put("NDEBUG", null)
+
+    // 直接写入编译参数
+    // compilerArgs.add '-W3'
+
+    // 指定不同类型编译工具的配置。
+    compilerArgs.addAll toolChain.map { toolChain ->
+        if (toolChain in [ Gcc, Clang ]) {
+            // return ['-O2', '-fno-access-control']
+            return []
+        } else if (toolChain in VisualCpp) {
+            return [
+                "/I${System.env.JAVA_HOME}/include",
+                "/I${System.env.JAVA_HOME}/include/win32"
+            ]
+        }
+        return []
+    }
+}
