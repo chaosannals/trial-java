@@ -1,7 +1,8 @@
 package trial;
 
-import java.io.*;
+import java.io.IOException;
 import java.nio.file.*;
+import java.security.NoSuchAlgorithmException;
 
 import trial.util.*;
 
@@ -13,27 +14,26 @@ public class App {
     public static void main(String[] args) {
         try {
             // String c = Files.readString(Path.of("license"));
-            String c = readAll("license");
-            System.out.println(c);
+            // String c = FileUtil.readAll("license");
+            // System.out.println(c);
+            // for(Path p: FileUtil.listDir(".")) {
+            //     System.out.println(p.getFileName());
+            // }
             Timing.timing(() -> {
-
+                try {
+                    String r = HashUtil.hashHexFrom("MD5", "license");
+                    System.out.println(r);
+                } catch (NoSuchAlgorithmException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
                 return null;
             });
         } catch (Exception e) {
 
-        }
-    }
-
-    private static String readAll(String path) throws IOException {
-        try (BufferedReader r = new BufferedReader(new FileReader(path))) {
-            StringBuilder b = new StringBuilder();
-            char[] buffer = new char[1024];
-            int n = 0;
-            while ((n = r.read(buffer)) != -1) {
-                String d = String.valueOf(buffer, 0, n);
-                b.append(d);
-            }
-            return b.toString();
         }
     }
 }
