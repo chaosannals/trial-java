@@ -1,6 +1,6 @@
 package trial;
 
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.*;
 import java.security.NoSuchAlgorithmException;
 
@@ -17,21 +17,34 @@ public class App {
             // String c = FileUtil.readAll("license");
             // System.out.println(c);
             // for(Path p: FileUtil.listDir(".")) {
-            //     System.out.println(p.getFileName());
+            // System.out.println(p.getFileName());
             // }
-            Timing.timing(() -> {
-                try {
-                    String r = HashUtil.hashHexFrom("MD5", "license");
-                    System.out.println(r);
-                } catch (NoSuchAlgorithmException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                return null;
-            });
+
+            try {
+                String[] envs = CommandUtil.getEnvs();
+                String r = CommandUtil.run("java -version", envs, new File("."));
+                System.out.println(r);
+            } catch (IOException e) {
+                System.out.println(e);
+            }
+            // Timing.timing(() -> {
+            // System.out.println(System.getenv());
+            // for (String e : CommandUtil.getEnvs()) {
+            // System.out.println(e);
+            // }
+
+            // try {
+            // String r = HashUtil.hashHexFrom("MD5", "license");
+            // System.out.println(r);
+            // } catch (NoSuchAlgorithmException e) {
+            // TODO Auto-generated catch block
+            // e.printStackTrace();
+            // } catch (IOException e) {
+            // TODO Auto-generated catch block
+            // e.printStackTrace();
+            // }
+            // return null;
+            // });
         } catch (Exception e) {
 
         }
