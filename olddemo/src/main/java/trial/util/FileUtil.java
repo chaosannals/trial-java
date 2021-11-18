@@ -1,7 +1,7 @@
 package trial.util;
 
 import java.io.*;
-import java.nio.file.Path;
+import java.nio.file.*;
 import java.util.*;
 
 public class FileUtil {
@@ -112,5 +112,41 @@ public class FileUtil {
             ps.add(Path.of(p).toAbsolutePath());
         }
         return ps;
+    }
+
+    public static void writeTo(String path, String content) throws IOException {
+        FileOutputStream fos = new FileOutputStream(path);
+        fos.write(content.getBytes());
+        fos.close();
+    }
+
+    /**
+     * 复制文件。
+     * 
+     * @param s
+     * @param d
+     * @throws IOException
+     */
+    public static void copyFile(String s, String d) throws IOException {
+        File dp = Path.of(d).getParent().toFile();
+        if (!dp.exists()) {
+            dp.mkdirs();
+        }
+
+        FileInputStream fis = new FileInputStream(s);
+        FileOutputStream fos = new FileOutputStream(d);
+        try {
+            byte[] buffer = new byte[1024];
+            while (true) {
+                int n = fis.read(buffer);
+                if (n == -1) {
+                    break;
+                }
+                fos.write(buffer, 0, n);
+            }
+        } finally {
+            fis.close();
+            fos.close();
+        }
     }
 }

@@ -21,9 +21,11 @@ public class App {
             // }
 
             try {
-                String[] envs = CommandUtil.getEnvs();
-                String r = CommandUtil.run("java -version", envs, new File("."));
-                System.out.println(r);
+                FileUtil.writeTo("runtimes/aaa.txt", "test");
+                FileUtil.copyFile("runtimes/aaa.txt", "runtimes/bbb/bbb.txt");
+                // String[] envs = CommandUtil.getEnvs();
+                // String r = CommandUtil.run("java -version", envs, new File("."));
+                // System.out.println(r);
             } catch (IOException e) {
                 System.out.println(e);
             }
