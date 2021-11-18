@@ -4,6 +4,7 @@ import java.io.*;
 import java.nio.file.*;
 import java.security.NoSuchAlgorithmException;
 
+import trial.demo.GsonDemo;
 import trial.util.*;
 
 public class App {
@@ -13,6 +14,7 @@ public class App {
 
     public static void main(String[] args) {
         try {
+            GsonDemo.readJsonOne();
             // String c = Files.readString(Path.of("license"));
             // String c = FileUtil.readAll("license");
             // System.out.println(c);
@@ -20,15 +22,15 @@ public class App {
             // System.out.println(p.getFileName());
             // }
 
-            try {
-                FileUtil.writeTo("runtimes/aaa.txt", "test");
-                FileUtil.copyFile("runtimes/aaa.txt", "runtimes/bbb/bbb.txt");
-                // String[] envs = CommandUtil.getEnvs();
-                // String r = CommandUtil.run("java -version", envs, new File("."));
-                // System.out.println(r);
-            } catch (IOException e) {
-                System.out.println(e);
-            }
+            // try {
+            //     FileUtil.writeTo("runtimes/aaa.txt", "test");
+            //     FileUtil.copyFile("runtimes/aaa.txt", "runtimes/bbb/bbb.txt");
+            //     // String[] envs = CommandUtil.getEnvs();
+            //     // String r = CommandUtil.run("java -version", envs, new File("."));
+            //     // System.out.println(r);
+            // } catch (IOException e) {
+            //     System.out.println(e);
+            // }
             // Timing.timing(() -> {
             // System.out.println(System.getenv());
             // for (String e : CommandUtil.getEnvs()) {
@@ -48,7 +50,7 @@ public class App {
             // return null;
             // });
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 }

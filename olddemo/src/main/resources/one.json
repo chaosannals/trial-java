@@ -1,0 +1,9 @@
+{
+    "files": {
+        "lib": [
+            "aaaa.txt",
+            "bxxx.txt"
+        ],
+        "exe": "ccc.txt"
+    }
+}
