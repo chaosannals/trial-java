@@ -13,7 +13,7 @@ tasks.withType(Javadoc) {
 }
 
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 dependencies {
@@ -35,4 +35,13 @@ application {
 
 processResources {
     include { "**/*.*" }
+}
+
+task copyJars(type:Copy) {
+    from configurations.runtimeClasspath
+    into "${buildDir}/dist"
+}
+
+tasks.named('build') {
+    dependsOn(copyJars)
 }
