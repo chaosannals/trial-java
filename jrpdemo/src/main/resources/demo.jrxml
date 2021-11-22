@@ -8,6 +8,9 @@
 	<parameter name="数字" class="java.lang.String">
 		<defaultValueExpression><![CDATA["13456"]]></defaultValueExpression>
 	</parameter>
+	<parameter name="日期" class="java.lang.String">
+		<defaultValueExpression><![CDATA["2021-02-11 12:23:56"]]></defaultValueExpression>
+	</parameter>
 	<queryString language="json">
 		<![CDATA[数据列表]]>
 	</queryString>
@@ -18,6 +21,10 @@
 	<field name="编号" class="java.lang.String">
 		<property name="net.sf.jasperreports.json.field.expression" value="编号"/>
 		<fieldDescription><![CDATA[编号]]></fieldDescription>
+	</field>
+	<field name="图片" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="图片"/>
+		<fieldDescription><![CDATA[图片]]></fieldDescription>
 	</field>
 	<background>
 		<band splitType="Stretch"/>
@@ -34,6 +41,11 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$P{数字}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="0" y="30" width="280" height="41" uuid="f307a920-c0a7-4248-9b81-b39e1b762c05"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{日期}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>
@@ -43,7 +55,7 @@
 		<band height="161" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="60" splitType="Stretch">
+		<band height="64" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="0" width="100" height="30" uuid="a307fdc2-6658-4a3d-b94c-1cc8d37b9a4d"/>
 				<textFieldExpression><![CDATA[$F{名字}]]></textFieldExpression>
@@ -52,6 +64,10 @@
 				<reportElement x="100" y="0" width="100" height="30" uuid="81178663-96cf-4e9d-b9eb-26f9d22ff51e"/>
 				<textFieldExpression><![CDATA[$F{编号}]]></textFieldExpression>
 			</textField>
+			<image scaleImage="RetainShape" isLazy="true">
+				<reportElement x="200" y="0" width="180" height="30" uuid="6c5a4602-765c-441f-a725-c7c22c553d0d"/>
+				<imageExpression><![CDATA[$F{图片}]]></imageExpression>
+			</image>
 		</band>
 	</detail>
 	<columnFooter>

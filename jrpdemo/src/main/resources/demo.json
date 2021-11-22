@@ -7,15 +7,18 @@
     "数据列表": [
         {
             "名字": "名字A",
-            "编号": "101"
+            "编号": "101",
+            "图片": "https://www.baidu.com/img/flexible/logo/pc/result.png"
         },
         {
             "名字": "名字B",
-            "编号": "102"
+            "编号": "102",
+            "图片": "https://www.baidu.com/img/flexible/logo/pc/result.png"
         },
         {
             "名字": "名字C",
-            "编号": "103"
+            "编号": "103",
+            "图片": "https://www.baidu.com/img/flexible/logo/pc/result.png"
         }
     ]
 }

@@ -3,7 +3,6 @@
  */
 package trial.java.jasperreport;
 
-import java.nio.file.*;
 import java.util.*;
 import java.io.*;
 import java.sql.Date;
@@ -21,7 +20,7 @@ public class App {
             JasperReport jr = JasperCompileManager.compileReport("./jrpdemo/src/main/resources/demo.jrxml");
             
             Gson gson = new Gson();
-            HashMap<String, Object> d = gson.fromJson(readResourceString("/demo.json"), HashMap.class);
+            HashMap<String, Object> d = gson.fromJson(DemoUtil.readResourceString("/demo.json"), HashMap.class);
             Map<String, Object> gy = (Map)d.get("概要"); // 作为参数传入 $P{XXXX}
             gy.put("时间", new Date(System.currentTimeMillis()));
             List<HashMap> a = (List)d.get("数据列表"); // 作为数据源 $F{XXX}
@@ -39,31 +38,6 @@ public class App {
             e.printStackTrace();
         }
         catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static String readResourceString(String name) throws IOException {
-        InputStream is = App.class.getResourceAsStream("/demo.json");
-        InputStreamReader reader = new InputStreamReader(is);
-        char[] buffer = new char[1024];
-        StringBuilder sb = new StringBuilder();
-        while (true) {
-            int n = reader.read(buffer);
-            if (n < 0) {
-                break;
-            }
-            sb.append(buffer, 0, n);
-        }
-        return sb.toString();
-    }
-
-    public static void newEmptyDemoPdf() {
-        try {
-            JasperReport jr = JasperCompileManager.compileReport(App.class.getResourceAsStream("/empty.jrxml"));
-            JasperPrint jp = JasperFillManager.fillReport(jr, new HashMap<>(), new JREmptyDataSource());
-            JasperExportManager.exportReportToPdfFile(jp, "empty.pdf");
-        } catch (JRException e) {
             e.printStackTrace();
         }
     }
