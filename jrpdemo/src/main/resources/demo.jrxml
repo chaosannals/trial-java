@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="demo" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="76bd52e5-5920-432f-abf0-3af3f31988c4">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="demo"/>
+	<parameter name="标题" class="java.lang.String">
+		<defaultValueExpression><![CDATA["一个222标题"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="数字" class="java.lang.String">
+		<defaultValueExpression><![CDATA["13456"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="json">
+		<![CDATA[数据列表]]>
+	</queryString>
+	<field name="名字" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="名字"/>
+		<fieldDescription><![CDATA[名字]]></fieldDescription>
+	</field>
+	<field name="编号" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="编号"/>
+		<fieldDescription><![CDATA[编号]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="550" height="30" uuid="4912e028-25a7-4239-9e7c-6723c70ceca9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{标题}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="30" width="270" height="41" uuid="20022cec-7b76-430a-9e7b-c7925ce84db5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{数字}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="42" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="161" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="60" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="30" uuid="a307fdc2-6658-4a3d-b94c-1cc8d37b9a4d"/>
+				<textFieldExpression><![CDATA[$F{名字}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="100" height="30" uuid="81178663-96cf-4e9d-b9eb-26f9d22ff51e"/>
+				<textFieldExpression><![CDATA[$F{编号}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
