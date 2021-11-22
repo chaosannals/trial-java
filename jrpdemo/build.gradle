@@ -10,6 +10,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.9'
     implementation 'com.lowagie:itext:2.1.7' // jasperreports 依赖
     implementation 'net.sf.jasperreports:jasperreports:6.18.1'
+    implementation 'net.sf.jasperreports:jasperreports-functions:6.18.1' // 给模板的内建函数
     testImplementation 'junit:junit:4.13.2'
 }
 
