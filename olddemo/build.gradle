@@ -45,3 +45,8 @@ task copyJars(type:Copy) {
 tasks.named('build') {
     dependsOn(copyJars)
 }
+
+tasks.named('run') {
+    // gradle run 时添加环境变量
+    environment 'EXERT_DEV', true
+}

@@ -1,6 +1,11 @@
 # [trial-java](https://github.com/chaosannals/trial-java)
 
 ```bash
+# 切换命令行为 Windows 下字符集为带 BOM 头的 UTF8
+chcp 65001
+```
+
+```bash
 # 生成 gradlew
 gradle wrapper
 ```

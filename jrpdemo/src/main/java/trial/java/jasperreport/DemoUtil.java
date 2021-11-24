@@ -5,7 +5,7 @@ import java.io.*;
 public class DemoUtil {
     public static String readResourceString(String name) throws IOException {
         InputStream is = App.class.getResourceAsStream(name);
-        InputStreamReader reader = new InputStreamReader(is);
+        InputStreamReader reader = new InputStreamReader(is, "UTF-8");
         char[] buffer = new char[1024];
         StringBuilder sb = new StringBuilder();
         while (true) {
