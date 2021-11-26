@@ -6,7 +6,7 @@
 		<defaultValueExpression><![CDATA["一个222标题"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="数字" class="java.lang.Double">
-		<defaultValueExpression><![CDATA[13456]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA[134.56]]></defaultValueExpression>
 	</parameter>
 	<parameter name="日期" class="java.lang.String">
 		<defaultValueExpression><![CDATA["2021-02-11 12:23:56"]]></defaultValueExpression>

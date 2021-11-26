@@ -28,7 +28,6 @@ public class App {
             Map<String, Object> gy = (Map)d.get("概要"); // 作为参数传入 $P{XXXX}
             // gy.put("时间", new Date(System.currentTimeMillis()));
             List<HashMap> a = (List)d.get("数据列表"); // 作为数据源 $F{XXX}
-            System.out.println(a);
             JRDataSource ds = new JRBeanCollectionDataSource(a);
             JasperPrint jp = JasperFillManager.fillReport(jr, gy, ds);
             // JasperExportManager.exportReportToPdfFile(jp, "demo.pdf");
