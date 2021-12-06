@@ -1,0 +1,107 @@
+import groovy.xml.MarkupBuilder
+
+plugins {
+    id 'application'
+    id "de.undercouch.download" version "4.1.2"
+}
+
+application {
+    mainClass = 'trial.java.exe4jboot.App'
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.apache.logging.log4j:log4j-api:2.14.1'
+    implementation 'org.apache.logging.log4j:log4j-core:2.14.1'
+    implementation project(':exe4jstart')
+    implementation project(':exe4jutil')
+    implementation project(':exe4jwork')
+}
+
+// 把资源文件一起打包。
+processResources {
+    include { "**/*.*" }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    sourceCompatibility = '16'
+    targetCompatibility = '16'
+}
+
+task copyJars(type:Copy) {
+    // 版本 7 开始
+    from configurations.runtimeClasspath
+    // 版本 6 用： from configurations.runtime
+    into "${projectDir}/lib"
+}
+
+task downloadJDK(type: Download) {
+    src 'https://download.java.net/openjdk/jdk16/ri/openjdk-16+36_windows-x64_bin.zip'
+    dest new File("${buildDir}", 'jdk.zip')
+    onlyIfModified true
+    overwrite false
+}
+
+task unzipJDK(dependsOn: downloadJDK, type: Copy) {
+    from zipTree(downloadJDK.dest)
+    into "${projectDir}"
+}
+
+task makeExe4j {
+    def sw = new StringWriter()
+    def mb = new MarkupBuilder(sw)
+    def pw = new PrintWriter("demo.exe4j")
+    mb.exe4j(version:"6.0.1", transformSequenceNumber:"2") {
+        directoryPresets(config: ".")
+        application(name: "tjexe4jd", distributionSourceDir: ".") {
+            languages() {
+                principalLanguage(id:"en", customLocalizationFile: "")
+            }
+        }
+        executable(name: "tjexe4jd", type: "1", iconSet: "true", iconFile: "./app.ico", executableDir: ".", redirectStderr: "true", stderrFile: "log/error.log", stderrMode: "append", redirectStdout: "true", stdoutFile: "log/output.log", stdoutMode: "append", failOnStderrOutput: "true", executableMode: "1", changeWorkingDirectory: "true", workingDirectory: ".", singleInstance: "false", serviceStartType: "2", serviceDependencies: "", serviceDescription: "", jreLocation: "", executionLevel: "asInvoker", checkConsoleParameter: "false", globalSingleInstance: "false", singleInstanceActivate: "true", dpiAware: "false", amd64: "true") {
+            messageSet()
+            versionInfo(include: "false", fileVersion: "", fileDescription: "", legalCopyright: "", internalName: "", productName: "", companyName: "", productVersion: "")
+        }
+        splashScreen(show: "false", width: "0", height: "0", bitmapFile: "", textOverlay: "false") {
+            text() {
+                statusLine(x: "20", y: "20", text: "", fontSize: "8", fontColor: "0,0,0", bold: "false")
+                versionLine(x: "20", y: "40", text: "version %VERSION%", fontSize: "8", fontColor: "0,0,0", bold: "false")
+            }
+        }
+        java(mainClass: "trial.java.exe4jboot.App", mainMode: "1", vmParameters: "-Dfile.encoding=UTF-8", arguments: "", allowVMPassthroughParameters: "false", preferredVM: "", bundleRuntime: "true", minVersion: "16", maxVersion: "16", allowBetaVM: "false", jdkOnly: "false") {
+            searchSequence {
+                directory(location: "./jdk-16")
+            }
+            classPath{
+                directory(location: "./build/libs/*", failOnError: "false")
+                configurations.runtimeClasspath.each { t ->
+                    def n = t.getName()
+                    archive( location: "./lib/${n}", failOnError:"false")
+                }
+            }
+            modulePath()
+            nativeLibraryDirectories()
+            vmOptions()
+        }
+        includedFiles()
+        unextractableFiles()
+    }
+    pw.println('<?xml version="1.0" encoding="UTF-8"?>')
+    pw.write(sw.toString())
+    pw.close()
+}
+
+task makeExe(type: Exec) {
+    dependsOn([makeExe4j])
+    workingDir "${projectDir}"
+    commandLine "exe4jc", "demo.exe4j"
+}
+
+tasks.named('build') {
+    dependsOn([unzipJDK, makeExe, copyJars])
+}
