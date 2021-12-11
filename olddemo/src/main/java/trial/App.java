@@ -2,6 +2,7 @@ package trial;
 
 import java.io.*;
 import java.nio.file.*;
+import java.util.*;
 import java.security.NoSuchAlgorithmException;
 
 import trial.demo.GsonDemo;
@@ -14,7 +15,10 @@ public class App {
 
     public static void main(String[] args) {
         try {
-            GsonDemo.readJsonOne();
+            Map<String, String> envm = System.getenv();
+            HashMap<String, String> nenvm = new HashMap<>(envm);
+            nenvm.put("aaa", "aaa");
+            // GsonDemo.readJsonOne();
             // String c = Files.readString(Path.of("license"));
             // String c = FileUtil.readAll("license");
             // System.out.println(c);

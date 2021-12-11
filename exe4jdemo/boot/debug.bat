@@ -7,4 +7,4 @@ set JAVA_CMD=%JAVA_HOME%\bin\javaw
 chcp 65001
 
 @echo on
-%JAVA_CMD% -cp ./lib/*;./build/libs/* -Dfile.encoding=UTF-8 trial.java.exe4jboot.App
+%JAVA_CMD% -cp ./lib/*;./build/libs/* -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 trial.java.exe4jboot.App

@@ -73,7 +73,7 @@ task makeExe4j {
                 versionLine(x: "20", y: "40", text: "version %VERSION%", fontSize: "8", fontColor: "0,0,0", bold: "false")
             }
         }
-        java(mainClass: "trial.java.exe4jboot.App", mainMode: "1", vmParameters: "-Dfile.encoding=UTF-8", arguments: "", allowVMPassthroughParameters: "false", preferredVM: "", bundleRuntime: "true", minVersion: "16", maxVersion: "16", allowBetaVM: "false", jdkOnly: "false") {
+        java(mainClass: "trial.java.exe4jboot.App", mainMode: "1", vmParameters: "-Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8", arguments: "", allowVMPassthroughParameters: "false", preferredVM: "", bundleRuntime: "true", minVersion: "16", maxVersion: "16", allowBetaVM: "false", jdkOnly: "false") {
             searchSequence {
                 directory(location: "./jdk-16")
             }
@@ -104,4 +104,16 @@ task makeExe(type: Exec) {
 
 tasks.named('build') {
     dependsOn([unzipJDK, makeExe, copyJars])
+}
+
+tasks.named('clean') {
+    doFirst {
+        [
+            'log', 'bin', 'jdk-16', 'lib',
+            'demo.exe4j', 'tjexe4jd.exe'
+        ].each { name ->
+            delete "${projectDir}/${name}"
+            // println "delete ${projectDir}/${name}"
+        }
+    }
 }

@@ -4,13 +4,13 @@ import java.io.*;
 import java.util.*;
 
 public class CommandUtil {
-    public static String[] getEnvs() {
+    public static ArrayList<String> getEnvs() {
         ArrayList<String> result = new ArrayList<String>();
         Map<String, String> envm = System.getenv();
         envm.forEach((k, v) -> {
             result.add(String.format("%s=%s", k, v));
         });
-        return result.toArray(new String[result.size()]);
+        return result;
     }
 
     public static String run(String cmd) throws IOException {

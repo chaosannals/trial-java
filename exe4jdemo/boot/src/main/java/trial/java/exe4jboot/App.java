@@ -1,6 +1,7 @@
 package trial.java.exe4jboot;
 
 import java.io.*;
+import java.util.*;
 import org.apache.logging.log4j.*;
 import trial.java.exe4jutil.*;
 
@@ -11,13 +12,27 @@ public class App {
         LOG.info("启动器");
         try {
             String jwp = new File("jdk-16/bin/javaw.exe").getAbsolutePath();
-            String scmd = String.format("%s -cp ./lib/* -Dfile.encoding=UTF-8 trial.java.exe4jstart.App", jwp);
+
+            Properties p = new Properties();
+            p.load(new FileInputStream("app.properties"));
+
+            // 启动界面
+            String ss = p.getProperty("start", "${javaw} -cp ./lib/* -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 trial.java.exe4jstart.App");
+            String scmd = ss.replace("${javaw}", jwp);
             LOG.info("启动界面命令: {}", scmd);
-            String sr = CommandUtil.run(scmd);
+            ArrayList<String> senv = CommandUtil.getEnvs();
+            LOG.info("env count: {}", senv.size());
+            senv.add("AAAA=123456");
+            String sr = CommandUtil.run(scmd, senv.toArray(new String[senv.size()]), null);
             LOG.info(sr);
+
             // 这个不会阻塞，不能用。
-            // ProcessUtil.run(jwp, "-cp", "./lib/*", "-Dfile.encoding=UTF-8", "trial.java.exe4jstart.App");
-            String wcmd = String.format("%s -cp ./lib/* -Dfile.encoding=UTF-8 trial.java.exe4jwork.App", jwp);
+            // ProcessUtil.run(jwp, "-cp", "./lib/*", "-Dfile.encoding=UTF-8",
+            // "trial.java.exe4jstart.App");
+
+            // 作业器
+            String ws = p.getProperty("work", "${javaw} -cp ./lib/* -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 trial.java.exe4jwork.App");
+            String wcmd = ws.replace("${javaw}", jwp);
             LOG.info("作业器命令: {}", wcmd);
             String wr = CommandUtil.run(wcmd);
             LOG.info(wr);
