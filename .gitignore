@@ -2,6 +2,8 @@
 /bin/
 /build/
 /runtimes/
+/*.exe
+/*.exe4j
 /*/.*/
 /*/bin/
 /*/build/

@@ -6,19 +6,10 @@ import java.util.*;
 
 public class FileUtil {
     public static byte[] readAllBytes(String path) throws IOException {
-        try (DataInputStream r = new DataInputStream(new FileInputStream(path))) {
-            ArrayList<Byte> b = new ArrayList<Byte>();
-            byte[] buffer = new byte[1024];
-            int n = 0;
-            while ((n = r.read(buffer)) != -1) {
-                for (int i = 0; i < n; ++i) {
-                    b.add(buffer[i]);
-                }
-            }
-            byte[] result = new byte[b.size()];
-            for (int i = 0; i < result.length; ++i) {
-                result[i] = b.get(i);
-            }
+        File f = new File(path);
+        try (FileInputStream r = new FileInputStream(f)) {
+            byte[] result = new byte[(int) f.length()];
+            r.read(result);
             return result;
         }
     }

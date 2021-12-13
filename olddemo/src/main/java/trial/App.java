@@ -15,9 +15,22 @@ public class App {
 
     public static void main(String[] args) {
         try {
-            Map<String, String> envm = System.getenv();
-            HashMap<String, String> nenvm = new HashMap<>(envm);
-            nenvm.put("aaa", "aaa");
+            String path = "test.exe";
+            byte[] a = Files.readAllBytes(Path.of(path));
+            byte[] b = FileUtil.readAllBytes(path);
+
+            System.out.printf("%d : %d \n", a.length, b.length);
+
+            for(int i = 0; i < a.length; ++i) {
+                if (a[i] != b[i]) {
+                    System.out.printf("%d != %d \n", a[i], b[i]);
+                    break;
+                }
+            }
+
+            // Map<String, String> envm = System.getenv();
+            // HashMap<String, String> nenvm = new HashMap<>(envm);
+            // nenvm.put("aaa", "aaa");
             // GsonDemo.readJsonOne();
             // String c = Files.readString(Path.of("license"));
             // String c = FileUtil.readAll("license");
