@@ -1,3 +1,9 @@
 [submodule "openjdkcm/jdk16u"]
 	path = openjdkcm/jdk16u
 	url = git@github.com:openjdk/jdk16u.git
+[submodule "openjdkcm/jdk13u"]
+	path = openjdkcm/jdk13u
+	url = git@github.com:openjdk/jdk13u.git
+[submodule "openjdkcm/jdk9u"]
+	path = openjdkcm/jdk9u
+	url = git@github.com:openjdk/jdk9u.git
