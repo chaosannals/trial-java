@@ -26,8 +26,20 @@ setup-x86_64 -q -P autoconf -P make -P unzip -P zip
 
 ## jdk9u
 
+在拉代码前，git submodule init 执行后, 找到子模块 .git/config 把 autocrlf = input 这个设置，执行 git submodule update 保证 LF 拉过来后不变成 CRLF 
+
+```ini
+[core]
+    autocrlf = input
+```
+
 Git 拉源码时候脚本 CRLF 换行符会导致报错，确保脚本是 LF 换行符。
 编译需要 VS2013 英文版，其他语言版本会有问题，需要改脚本。
+
+```bash
+# 需要下载 freetype 源码 这里使用 2.8.1 高版本（试过 2.11.1 ）的编译会报错。
+bash configure --with-debug-level=release --with-jvm-variants=server --with-freetype-src=/cygdrive/g/freetype-2.8.1 --with-boot-jdk=/cygdrive/d/java/jdk1.8.0_311 --with-target-bits=32 --disable-warnings-as-errors
+```
 
 
 ## jdk16u
