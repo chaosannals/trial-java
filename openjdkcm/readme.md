@@ -36,15 +36,24 @@ setup-x86_64 -q -P autoconf -P make -P unzip -P zip
 Git 拉源码时候脚本 CRLF 换行符会导致报错，确保脚本是 LF 换行符。
 编译需要 VS2013 英文版，其他语言版本会有问题，需要改脚本。
 
+注：VSCODE 直接添加 .gitignore 忽略 /build/ 文件夹，不然太卡。
+
 ```bash
 # 需要下载 freetype 源码 这里使用 2.8.1 高版本（试过 2.11.1 ）的编译会报错。
 bash configure --with-debug-level=release --with-jvm-variants=server --with-freetype-src=/cygdrive/g/freetype-2.8.1 --with-boot-jdk=/cygdrive/d/java/jdk1.8.0_311 --with-target-bits=32 --disable-warnings-as-errors
 ```
 
+```bash
+# make 的版本使用了 4.2.1 （4.3 会报错 make 4.3 breaks build）
+# 单元测试文件 test_json.cpp 代码是错的，直接删除这个文件 可以通过。
+make all
+```
 
 ## jdk16u
 此时已切换 英文 VS 。
 64位的编译很简单，直接下面两行就通过了。
+
+freetype 参数一直报无效，在没有指定 freetype 的情况下，编译成功目录下又 freetype.dll。
 
 ```bash
 # 配置编译
