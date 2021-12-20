@@ -9,3 +9,7 @@
 	path = openjdkcm/jdk9u
 	url = git@github.com:openjdk/jdk9u.git
 	ignore = dirty
+[submodule "openjdkcm/jdk12u"]
+	path = openjdkcm/jdk12u
+	url = git@github.com:openjdk/jdk12u.git
+	ignore = dirty
