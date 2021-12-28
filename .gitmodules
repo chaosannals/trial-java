@@ -24,9 +24,12 @@
 [submodule "openjdkcm/jdk14u"]
 	path = openjdkcm/jdk14u
 	url = git@github.com:openjdk/jdk14u.git
+	ignore = dirty
 [submodule "openjdkcm/jdk15u"]
 	path = openjdkcm/jdk15u
 	url = git@github.com:openjdk/jdk15u.git
+	ignore = dirty
 [submodule "openjdkcm/jdk17u"]
 	path = openjdkcm/jdk17u
 	url = git@github.com:openjdk/jdk17u.git
+	ignore = dirty
