@@ -39,6 +39,7 @@ Git 拉源码时候脚本 CRLF 换行符会导致报错，确保脚本是 LF 换
 注：VSCODE 直接添加 .gitignore 忽略 /build/ 文件夹，不然太卡。
 
 ```bash
+# 选中 VS 2013
 # 需要下载 freetype 源码 这里使用 2.8.1 高版本（试过 2.11.1 ）的编译会报错。
 bash configure --with-debug-level=release --with-jvm-variants=server --with-freetype-src=/cygdrive/g/freetype-2.8.1 --with-boot-jdk=/cygdrive/d/java/jdk1.8.0_311 --with-target-bits=32 --disable-warnings-as-errors
 ```
@@ -49,9 +50,77 @@ bash configure --with-debug-level=release --with-jvm-variants=server --with-free
 make all
 ```
 
+## jdk10u
+
+```bash
+# 选中 VS 2013
+# 需要 jdk9 作为编译启动 JDK --with-boot-jdk
+bash configure --with-debug-level=release --with-jvm-variants=server --with-freetype-src=/cygdrive/g/freetype-2.8.1 --with-boot-jdk=/cygdrive/d/java/jdk9w32 --with-target-bits=32 --disable-warnings-as-errors
+
+# make 的版本使用了 4.2.1 （4.3 会报错 make 4.3 breaks build）
+# 单元测试文件 test/hotspot/gtest/utilities/test_json.cpp 代码是错的，直接删除这个文件 可以通过。
+make all
+```
+
+## jdk11u
+
+```bash
+# 配置库 freetype 这个 JDK12 以后好像就不需要设置 freetype 了。下面这个可能不需要。
+export PATH=/cygdrive/d/freetype_w32:$PATH
+export FREETYPE_CFLAGS=/cygdrive/d/freetype_w32/include
+export FREETYPE_LIBS=/cygdrive/d/freetype_w32/lib
+
+# 会选中 VS 2017
+# jdk11 开始 --with-freetype-src 参数不可用
+# 需要 jdk10 作为编译启动 JDK --with-boot-jdk
+bash configure --with-debug-level=release --with-jvm-variants=server --with-boot-jdk=/cygdrive/d/java/jdk10w32 --with-target-bits=32 --disable-warnings-as-errors
+
+# 单元测试文件 test/hotspot/gtest/utilities/test_json.cpp 代码是错的，直接删除这个文件 可以通过。
+make all
+```
+
+## jdk12u
+
+```bash
+# 会选中 VS 2017
+# 需要 jdk11 作为编译启动 JDK --with-boot-jdk
+bash configure --with-debug-level=release --with-jvm-variants=server --with-boot-jdk=/cygdrive/d/java/jdk11w32 --with-target-bits=32 --disable-warnings-as-errors
+
+# 单元测试文件 test/hotspot/gtest/utilities/test_json.cpp 代码是错的，直接删除这个文件 可以通过。
+make all
+```
+
+## jdk13u
+
+```bash
+# 会选中 VS 2017
+# 需要 jdk12 作为编译启动 JDK --with-boot-jdk
+bash configure --with-debug-level=release --with-jvm-variants=server --with-boot-jdk=/cygdrive/d/java/jdk12w32 --with-target-bits=32 --disable-warnings-as-errors
+
+#
+make all
+```
+
+## jdk14u
+
+```bash
+# 需要 jdk13 作为编译启动 JDK --with-boot-jdk
+```
+
+## jdk15u
+
+```bash
+# 需要 jdk14 作为编译启动 JDK --with-boot-jdk
+```
+
 ## jdk16u
 此时已切换 英文 VS 。
-64位的编译很简单，直接下面两行就通过了。
+
+```bash
+# 需要 jdk15 作为编译启动 JDK --with-boot-jdk
+```
+
+直接从官网下载 64位 JDK15 或 16 的编译很简单，直接下面两行就通过了。
 
 freetype 参数一直报无效，在没有指定 freetype 的情况下，编译成功目录下又 freetype.dll。
 

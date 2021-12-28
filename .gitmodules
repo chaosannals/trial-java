@@ -13,3 +13,20 @@
 	path = openjdkcm/jdk12u
 	url = git@github.com:openjdk/jdk12u.git
 	ignore = dirty
+[submodule "openjdkcm/jdk11u"]
+	path = openjdkcm/jdk11u
+	url = git@github.com:openjdk/jdk11u.git
+	ignore = dirty
+[submodule "openjdkcm/jdk10u"]
+	path = openjdkcm/jdk10u
+	url = git@github.com:openjdk/jdk10u.git
+	ignore = dirty
+[submodule "openjdkcm/jdk14u"]
+	path = openjdkcm/jdk14u
+	url = git@github.com:openjdk/jdk14u.git
+[submodule "openjdkcm/jdk15u"]
+	path = openjdkcm/jdk15u
+	url = git@github.com:openjdk/jdk15u.git
+[submodule "openjdkcm/jdk17u"]
+	path = openjdkcm/jdk17u
+	url = git@github.com:openjdk/jdk17u.git
