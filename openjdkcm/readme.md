@@ -39,7 +39,7 @@ Git 拉源码时候脚本 CRLF 换行符会导致报错，确保脚本是 LF 换
 注：VSCODE 直接添加 .gitignore 忽略 /build/ 文件夹，不然太卡。
 
 ```bash
-# 选中 VS 2013
+# 选中 VS 2013 （英文版，中文会报错）
 # 需要下载 freetype 源码 这里使用 2.8.1 高版本（试过 2.11.1 ）的编译会报错。
 bash configure --with-debug-level=release --with-jvm-variants=server --with-freetype-src=/cygdrive/g/freetype-2.8.1 --with-boot-jdk=/cygdrive/d/java/jdk1.8.0_311 --with-target-bits=32 --disable-warnings-as-errors
 ```
@@ -53,7 +53,7 @@ make all
 ## jdk10u
 
 ```bash
-# 选中 VS 2013
+# 选中 VS 2013  （英文版，中文会报错）
 # 需要 jdk9 作为编译启动 JDK --with-boot-jdk
 bash configure --with-debug-level=release --with-jvm-variants=server --with-freetype-src=/cygdrive/g/freetype-2.8.1 --with-boot-jdk=/cygdrive/d/java/jdk9w32 --with-target-bits=32 --disable-warnings-as-errors
 
@@ -70,7 +70,7 @@ export PATH=/cygdrive/d/freetype_w32:$PATH
 export FREETYPE_CFLAGS=/cygdrive/d/freetype_w32/include
 export FREETYPE_LIBS=/cygdrive/d/freetype_w32/lib
 
-# 会选中 VS 2017
+# 会选中 VS 2017（英文版，中文会报错）
 # jdk11 开始 --with-freetype-src 参数不可用
 # 需要 jdk10 作为编译启动 JDK --with-boot-jdk
 bash configure --with-debug-level=release --with-jvm-variants=server --with-boot-jdk=/cygdrive/d/java/jdk10w32 --with-target-bits=32 --disable-warnings-as-errors
@@ -82,7 +82,7 @@ make all
 ## jdk12u
 
 ```bash
-# 会选中 VS 2017
+# 会选中 VS 2017 （英文版，中文会报错）
 # 需要 jdk11 作为编译启动 JDK --with-boot-jdk
 bash configure --with-debug-level=release --with-jvm-variants=server --with-boot-jdk=/cygdrive/d/java/jdk11w32 --with-target-bits=32 --disable-warnings-as-errors
 
@@ -93,41 +93,67 @@ make all
 ## jdk13u
 
 ```bash
-# 会选中 VS 2017
+# 会选中 VS 2017（英文版，中文会报错）
 # 需要 jdk12 作为编译启动 JDK --with-boot-jdk
 bash configure --with-debug-level=release --with-jvm-variants=server --with-boot-jdk=/cygdrive/d/java/jdk12w32 --with-target-bits=32 --disable-warnings-as-errors
 
-#
+# 单元测试文件 test/hotspot/gtest/utilities/test_json.cpp 代码是错的，直接删除这个文件 可以通过。
 make all
 ```
 
 ## jdk14u
 
 ```bash
+# 会选中 VS 2017（英文版，中文会报错）
 # 需要 jdk13 作为编译启动 JDK --with-boot-jdk
+bash configure --with-debug-level=release --with-jvm-variants=server --with-boot-jdk=/cygdrive/d/java/jdk13w32 --with-target-bits=32 --disable-warnings-as-errors
+
+# 单元测试文件 test/hotspot/gtest/utilities/test_json.cpp 代码是错的，直接删除这个文件 可以通过。
+make all
 ```
 
 ## jdk15u
 
 ```bash
+# 会选中 VS 2017（英文版，中文会报错）
 # 需要 jdk14 作为编译启动 JDK --with-boot-jdk
+bash configure --with-debug-level=release --with-jvm-variants=server --with-boot-jdk=/cygdrive/d/java/jdk14w32 --with-target-bits=32 --disable-warnings-as-errors
+
+# 单元测试文件 test/hotspot/gtest/utilities/test_json.cpp 代码是错的，直接删除这个文件 可以通过。
+make all
 ```
 
 ## jdk16u
 此时已切换 英文 VS 。
 
 ```bash
+# 编译 32 位
+# 会选中 VS 2019（英文版，中文会报错）
 # 需要 jdk15 作为编译启动 JDK --with-boot-jdk
+bash configure --with-debug-level=release --with-jvm-variants=server --with-boot-jdk=/cygdrive/d/java/jdk15w32 --with-target-bits=32 --disable-warnings-as-errors
 ```
 
 直接从官网下载 64位 JDK15 或 16 的编译很简单，直接下面两行就通过了。
 
-freetype 参数一直报无效，在没有指定 freetype 的情况下，编译成功目录下又 freetype.dll。
+freetype 参数一直报无效，在没有指定 freetype 的情况下，编译成功目录下有 freetype.dll。
 
 ```bash
+# 编译 64位
 # 配置编译
 bash configure --with-debug-level=release --with-jvm-variants=server --with-boot-jdk=/cygdrive/d/java/jdk-16.0.1 --disable-warnings-as-errors
 
 # 编译
+make all
+```
+
+### jdk17u
+
+```bash
+# 编译 32 位
+# 会选中 VS 2019（英文版，中文会报错）
+# 需要 jdk16 作为编译启动 JDK --with-boot-jdk
+bash configure --with-debug-level=release --with-jvm-variants=server --with-boot-jdk=/cygdrive/d/java/jdk16w32 --with-target-bits=32 --disable-warnings-as-errors
+
+# 
 make all
 ```
