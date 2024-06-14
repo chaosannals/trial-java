@@ -6,8 +6,14 @@
 # 创建原型项目
 mvn archetype:generate -DgroupId={project-packaging} -DartifactId={project-name} -DarchetypeArtifactId={maven-template}  -DinteractiveMode=false
 
+# 查找本地已有模板库
+mvn archetype:generate -Dfilter=org.springframework.boot
+
 # 示例，maven-archetype-quickstart是一个模板库
 mvn archetype:generate -DgroupId=com.chaosannals -DartifactId=simpledemo -DarchetypeArtifactId=maven-archetype-quickstart  -DinteractiveMode=false
+
+# 示例，spring boot 命令模板 这个模板有问题
+mvn archetype:generate -DgroupId=com.chaosannals -DartifactId=sbsimpledemo -DarchetypeGroupId=org.springframework.boot -DarchetypeArtifactId=spring-boot-sample-simple-archetype  -DinteractiveMode=false
 
 # 编译 *.java 到 *.class 文件
 mvn compile
@@ -20,6 +26,9 @@ mvn exec:java -Dexec.mainClass="com.chaosannals.App" -Dexec.args="argument1"
 
 # 单元测试
 mvn test
+
+# spring boot 示例 run
+mvn spring-boot:run
 ```
 
 ## WAR
