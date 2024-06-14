@@ -21,6 +21,9 @@ mvn compile
 # 执行 指定主类名
 mvn exec:java -Dexec.mainClass="com.chaosannals.App"
 
+# 跳过单元测试，这个 simple 的单元测试模板有问题。
+mvn exec:java -Dexec.mainClass="com.chaosannals.App" -Dmaven.test.skip=true
+
 # 执行 指定 主类名 和 参数
 mvn exec:java -Dexec.mainClass="com.chaosannals.App" -Dexec.args="argument1"
 
