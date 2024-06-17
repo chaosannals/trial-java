@@ -15,6 +15,9 @@ mvn archetype:generate -DgroupId=com.chaosannals -DartifactId=simpledemo -Darche
 # 示例，maven-archetype-quickstart是一个模板库
 mvn archetype:generate -DgroupId=com.chaosannals -DartifactId=wardemo -DarchetypeArtifactId=maven-archetype-quickstart  -DinteractiveMode=false
 
+# 示例， spring mvc 
+mvn archetype:generate -DgroupId=com.chaosannals -DartifactId=smvcdemo -DarchetypeArtifactId=maven-archetype-quickstart  -DinteractiveMode=false
+
 # 示例，spring boot 命令模板 这个模板有问题
 mvn archetype:generate -DgroupId=com.chaosannals -DartifactId=sbsimpledemo -DarchetypeGroupId=org.springframework.boot -DarchetypeArtifactId=spring-boot-sample-simple-archetype  -DinteractiveMode=false
 
@@ -132,3 +135,9 @@ openjdk11 是没有 jdk1.8 的 2 个 jar 的。直接复制文件夹会导致少
 
 https://www.ibm.com/docs/zh/jfsm/1.1.3.0?topic=port-modifying-jre-security-file
 
+
+
+### jsp
+
+taglib 这个 jstl 有问题。
+tomcat 时好时坏的。
