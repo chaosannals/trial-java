@@ -141,3 +141,5 @@ https://www.ibm.com/docs/zh/jfsm/1.1.3.0?topic=port-modifying-jre-security-file
 
 taglib 这个 jstl 有问题。
 tomcat 时好时坏的。
+
+<%@ taglib uri="https://java.sun.com/jsp/jstl/core" prefix="c"%>
